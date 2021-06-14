@@ -88,6 +88,9 @@ function getLibp2pOptions ({ options, config, datastore, keys, keychainConfig, p
     modules: {}
   }
 
+  console.log('[libp2p] relay.enabled=', get(options, 'relay.enabled', get(config, 'relay.enabled', true)))
+  console.log('[libp2p] relay.autoRelay.enabled=', get(options, 'relay.autoRelay.enabled', get(config, 'relay.autoRelay.enabled', true)))
+
   const libp2pOptions = {
     modules: {
       pubsub: getPubsubRouter()
@@ -109,6 +112,9 @@ function getLibp2pOptions ({ options, config, datastore, keys, keychainConfig, p
         hop: {
           enabled: get(options, 'relay.hop.enabled', get(config, 'relay.hop.enabled', false)),
           active: get(options, 'relay.hop.active', get(config, 'relay.hop.active', false))
+        },
+        autoRelay: {
+          enabled: get(options, 'relay.autoRelay.enabled', get(config, 'relay.autoRelay.enabled',true))
         }
       },
       dht: {
